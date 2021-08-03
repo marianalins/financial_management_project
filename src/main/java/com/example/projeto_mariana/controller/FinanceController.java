@@ -1,7 +1,6 @@
 package com.example.projeto_mariana.controller;
 
-import com.example.projeto_mariana.Finance;
-import com.example.projeto_mariana.Person;
+import com.example.projeto_mariana.model.Finance;
 import com.example.projeto_mariana.business.FinanceBusiness;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

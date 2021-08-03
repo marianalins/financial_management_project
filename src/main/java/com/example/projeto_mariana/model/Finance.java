@@ -1,4 +1,4 @@
-package com.example.projeto_mariana;
+package com.example.projeto_mariana.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
