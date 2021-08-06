@@ -16,15 +16,15 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int id;
+    private Long id = null;
 
     @Column(name="first_name", nullable = false)
-    public String firstName;
+    private String firstName;
 
     @Column(name = "last_name")
-    public String lastName;
+    private String lastName;
 
-    public Person(int id, String firstName) {
+    public Person(Long id, String firstName) {
         this.id = id;
         this.firstName = firstName;
     }

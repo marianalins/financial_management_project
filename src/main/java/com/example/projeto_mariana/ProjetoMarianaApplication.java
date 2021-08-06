@@ -15,21 +15,4 @@ public class ProjetoMarianaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoMarianaApplication.class, args);
 	}
-
-	/*@Bean
-	CommandLineRunner init(PersonBusiness personBusiness) {
-		return args -> {
-			personBusiness.deleteAll();
-			LongStream.range(1, 11)
-					.mapToObj(i -> {
-						Person p = new Person();
-						p.setFirstName("FirstName "+ i);
-						p.setLastName("LastName" + i);
-						return p;
-					})
-					.map(v -> personBusiness.save(v))
-					.forEach(System.out::println);
-		};
-	}*/
-
 }

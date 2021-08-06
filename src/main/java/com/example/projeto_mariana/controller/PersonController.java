@@ -2,6 +2,7 @@ package com.example.projeto_mariana.controller;
 
 import com.example.projeto_mariana.model.Person;
 import com.example.projeto_mariana.business.PersonBusiness;
+import com.example.projeto_mariana.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/person")
@@ -18,30 +20,34 @@ public class PersonController {
     @Autowired
     private PersonBusiness personBusiness;
 
-    @GetMapping(path = {"/{id}"})
-    public ResponseEntity<Person> getPerson(@PathVariable int id) {
-        log.info("Receiving HTTP request objmct");
-        return (ResponseEntity<Person>) personBusiness.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
-        //this.personBusiness.getPerson();
-        //final Person person = new Person ("Paulo","Almeida");
-        //return ResponseEntity.ok();
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Person> getPerson(@PathVariable Long id) {
+        log.info("Receiving HTTP request ");
+        Optional<Person> person = Optional.of(personBusiness.getPerson(id));
 
+        return ResponseEntity.ok(person.orElse(null));
     }
 
-    @PostMapping
-    public Person addPerson(@RequestBody Person person) {
-        return (Person) personBusiness.save(person);
+    @PostMapping("/add")
+    public void addPerson(Person person) {
+        personBusiness.addPerson(person);
+    }
+
+    public ResponseEntity<Person> delete(Long id) {
+        log.info("Receiving HTTP request ");
+        personBusiness.delete(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/list")
     public ResponseEntity<List<Person>> list() {
         log.info("Receiving HTTP request ");
-        this.personBusiness.findAll();
-        return ResponseEntity.ok(new ArrayList<Person>());
+
+        return ResponseEntity.ok(personBusiness.list());
 
     }
+
+
 }
 
 
