@@ -33,6 +33,7 @@ public class PersonController {
         personBusiness.addPerson(person);
     }
 
+    @DeleteMapping(path = {"/{id}"})
     public ResponseEntity<Person> delete(Long id) {
         log.info("Receiving HTTP request ");
         personBusiness.delete(id);
