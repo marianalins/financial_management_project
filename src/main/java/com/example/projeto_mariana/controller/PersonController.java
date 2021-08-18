@@ -20,6 +20,14 @@ public class PersonController {
     @Autowired
     private PersonBusiness personBusiness;
 
+    @GetMapping("/getsemparam")
+    public ResponseEntity<Person> getPersonsem() {
+        log.info("get sem parametro amorr ");
+        //Optional<Person> person = Optional.of(personBusiness.getPerson(null));
+
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/get/{id}")
     public ResponseEntity<Person> getPerson(@PathVariable Long id) {
         log.info("Receiving HTTP request ");
