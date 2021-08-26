@@ -3,8 +3,10 @@ package com.example.projeto_mariana.controller;
 import com.example.projeto_mariana.model.Person;
 import com.example.projeto_mariana.business.PersonBusiness;
 import com.example.projeto_mariana.repository.PersonRepository;
+import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,23 +31,49 @@ public class PersonController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Person> getPerson(@PathVariable Long id) {
+    public ResponseEntity<?> getPerson(@PathVariable Long id) {
         log.info("Receiving HTTP request ");
-        Optional<Person> person = Optional.of(personBusiness.getPerson(id));
-
-        return ResponseEntity.ok(person.orElse(null));
+        Optional<Person> person = Optional.ofNullable(personBusiness.getPerson(id));
+        if(person.isPresent()) {
+            return new ResponseEntity<Person>(person.get(),HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("Person does not exist in the system", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/add")
-    public void addPerson(Person person) {
-        personBusiness.addPerson(person);
+    public ResponseEntity<String> addPerson(@RequestBody Person person) {
+        log.info("Receiving HTTP request ");
+        log.info("OIIIII"+person.getId());
+        Optional<Person> optional = Optional.ofNullable(personBusiness.findPerson(person));
+
+       if(!optional.isPresent()) {
+            personBusiness.addPerson(person);
+            return new ResponseEntity<>("Person added successfully!", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Person already exist in the system", HttpStatus.NOT_FOUND);
+        }
     }
 
-    @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<Person> delete(Long id) {
+    @DeleteMapping(path = {"/delete/{id}"})
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         log.info("Receiving HTTP request ");
-        personBusiness.delete(id);
-        return ResponseEntity.ok().build();
+        Optional<Person> person = Optional.ofNullable(personBusiness.getPerson(id));
+        if(person.isPresent()) {
+            personBusiness.delete(id);
+            return new ResponseEntity<>("Person deleted successfully!", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Person does not exist in the system", HttpStatus.NOT_FOUND);
+        }
+
+
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Person personInfo) {
+        log.info("Receiving HTTP request ");
+        return new ResponseEntity<>("Updated successfully"+ personBusiness.update(id,personInfo),HttpStatus.OK);
+
     }
 
     @GetMapping("/list")
