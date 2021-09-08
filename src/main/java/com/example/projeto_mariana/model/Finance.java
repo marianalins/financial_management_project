@@ -17,21 +17,21 @@ public class Finance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int id;
+    private Long id;
     @Column(name="type", nullable = false)
-    public String type;
+    private String type;
     @Column(name="description")
-    public String description;
+    private String description;
     @Column(name="person_id", nullable = false)
-    public int personId;
+    private int personId;
     @Column(name="date")
-    public Date date;
+    private Date date;
     @Column(name="due_date")
-    public Date dueDate;
+    private Date dueDate;
     @Column(name="nf_id", nullable = false)
-    public int nfId;
+    private int nfId;
 
-    public Finance(int id, String type, int personId, int nfId) {
+    public Finance(Long id, String type, int personId, int nfId) {
         this.id = id;
         this.type = type;
         this.personId = personId;

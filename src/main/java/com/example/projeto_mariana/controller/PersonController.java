@@ -44,7 +44,6 @@ public class PersonController {
     @PostMapping("/add")
     public ResponseEntity<String> addPerson(@RequestBody Person person) {
         log.info("Receiving HTTP request ");
-        log.info("OIIIII"+person.getId());
         Optional<Person> optional = Optional.ofNullable(personBusiness.findPerson(person));
 
        if(!optional.isPresent()) {
@@ -70,9 +69,9 @@ public class PersonController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Person personInfo) {
+    public ResponseEntity<String> update(@PathVariable(value="id") Long id, Person personInfo) {
         log.info("Receiving HTTP request ");
-        return new ResponseEntity<>("Updated successfully"+ personBusiness.update(id,personInfo),HttpStatus.OK);
+        return new ResponseEntity<>("Updated successfully "+ personBusiness.update(id,personInfo),HttpStatus.OK);
 
     }
 
