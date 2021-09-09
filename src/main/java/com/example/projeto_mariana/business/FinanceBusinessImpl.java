@@ -17,6 +17,38 @@ public class FinanceBusinessImpl implements FinanceBusiness{
         return financeRepository.findById(id).orElse(null);
     }
 
+    public Finance findFinance(Finance finance) {
+        List<Finance> financeList = list();
+        for(int i = 0; i <= financeList.size(); i++) {
+            if(financeList.get(i).getPersonId() == finance.getPersonId() &&
+                financeList.get(i).getType().equals(finance.getType()) &&
+                financeList.get(i).getNfId() == finance.getNfId()) {
+               return finance;
+            }
+        }
+        return null;
+    }
+
+    public void addFinance(Finance finance) {
+        financeRepository.save(finance);
+    }
+
+    public void delete(Long id) {
+        financeRepository.deleteById(id);
+    }
+
+    public Finance update(Long id, Finance financeInfo) {
+        Finance finance = financeRepository.findById(id).orElse(null);
+        finance.setType(financeInfo.getType());
+        finance.setPersonId(finance.getPersonId());
+        finance.setNfId(finance.getNfId());
+        finance.setDescription(finance.getDescription());
+        finance.setDate(finance.getDate());
+        finance.setDueDate(finance.getDueDate());
+        final Finance updatedFinance = financeRepository.save(finance);
+        return updatedFinance;
+    }
+
     public List<Finance> list() {
         return financeRepository.findAll();
     }

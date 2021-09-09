@@ -30,11 +30,11 @@ public class PersonBusinessImpl implements PersonBusiness{
         return null;
     }
 
-    public void addPerson(Person person) {
+    public void addPerson(Person person){
         personRepository.save(person);
     }
 
-    public void delete(Long id) {
+    public void delete(Long id){
         personRepository.deleteById(id);
     }
 
@@ -46,7 +46,7 @@ public class PersonBusinessImpl implements PersonBusiness{
         return ResponseEntity.ok(updatedPerson);
     }
 
-    public List<Person> list() {
+    public List<Person> list(){
         return personRepository.findAll();
     }
 

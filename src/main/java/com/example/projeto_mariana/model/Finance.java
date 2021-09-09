@@ -23,15 +23,15 @@ public class Finance {
     @Column(name="description")
     private String description;
     @Column(name="person_id", nullable = false)
-    private int personId;
+    private Long personId;
     @Column(name="date")
     private Date date;
     @Column(name="due_date")
     private Date dueDate;
     @Column(name="nf_id", nullable = false)
-    private int nfId;
+    private Long nfId;
 
-    public Finance(Long id, String type, int personId, int nfId) {
+    public Finance(Long id, String type, Long personId, Long nfId) {
         this.id = id;
         this.type = type;
         this.personId = personId;
