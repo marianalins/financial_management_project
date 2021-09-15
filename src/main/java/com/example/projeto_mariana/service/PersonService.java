@@ -1,4 +1,4 @@
-package com.example.projeto_mariana.business;
+package com.example.projeto_mariana.service;
 
 import com.example.projeto_mariana.model.Person;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PersonBusiness {
+public interface PersonService {
 
     public Person getPerson(Long id);
     public Person findPerson(Person person);

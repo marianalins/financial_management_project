@@ -1,7 +1,7 @@
 package com.example.projeto_mariana.controller;
 
 
-import com.example.projeto_mariana.business.NfBusiness;
+import com.example.projeto_mariana.service.NfService;
 import com.example.projeto_mariana.model.Nf;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @Slf4j
 public class NfController {
     @Autowired
-    private NfBusiness nfBusiness;
+    private NfService nfBusiness;
 
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getNf(@PathVariable Long id){

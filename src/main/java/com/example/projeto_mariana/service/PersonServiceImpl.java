@@ -1,4 +1,4 @@
-package com.example.projeto_mariana.business;
+package com.example.projeto_mariana.service;
 
 import com.example.projeto_mariana.model.Person;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class PersonBusinessImpl implements PersonBusiness{
+public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private PersonRepository personRepository;
@@ -42,8 +42,7 @@ public class PersonBusinessImpl implements PersonBusiness{
         Person person =  personRepository.findById(id).orElse(null);
         person.setFirstName(personInfo.getFirstName());
         person.setLastName(personInfo.getLastName());
-        final Person updatedPerson = personRepository.save(person);
-        return ResponseEntity.ok(updatedPerson);
+        return ResponseEntity.ok(personRepository.save(person));
     }
 
     public List<Person> list(){

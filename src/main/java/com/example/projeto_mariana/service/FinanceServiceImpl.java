@@ -1,4 +1,4 @@
-package com.example.projeto_mariana.business;
+package com.example.projeto_mariana.service;
 
 import com.example.projeto_mariana.model.Finance;
 import com.example.projeto_mariana.repository.FinanceRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class FinanceBusinessImpl implements FinanceBusiness{
+public class FinanceServiceImpl implements FinanceService {
 
     @Autowired
     private FinanceRepository financeRepository;
@@ -45,8 +45,7 @@ public class FinanceBusinessImpl implements FinanceBusiness{
         finance.setDescription(finance.getDescription());
         finance.setDate(finance.getDate());
         finance.setDueDate(finance.getDueDate());
-        final Finance updatedFinance = financeRepository.save(finance);
-        return updatedFinance;
+        return financeRepository.save(finance);
     }
 
     public List<Finance> list() {

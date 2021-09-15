@@ -1,16 +1,13 @@
 package com.example.projeto_mariana.controller;
 
 import com.example.projeto_mariana.model.Person;
-import com.example.projeto_mariana.business.PersonBusiness;
-import com.example.projeto_mariana.repository.PersonRepository;
-import javassist.NotFoundException;
+import com.example.projeto_mariana.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +17,7 @@ import java.util.Optional;
 public class PersonController {
 
     @Autowired
-    private PersonBusiness personBusiness;
+    private PersonService personBusiness;
 
     @GetMapping("/getsemparam")
     public ResponseEntity<Person> getPersonsem() {

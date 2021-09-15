@@ -1,7 +1,7 @@
 package com.example.projeto_mariana.controller;
 
 import com.example.projeto_mariana.model.Finance;
-import com.example.projeto_mariana.business.FinanceBusiness;
+import com.example.projeto_mariana.service.FinanceService;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class FinanceController {
 
     @Autowired
-    private FinanceBusiness financeBusiness;
+    private FinanceService financeBusiness;
 
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getFinance(@PathVariable Long id) {

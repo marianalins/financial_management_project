@@ -1,4 +1,4 @@
-package com.example.projeto_mariana.business;
+package com.example.projeto_mariana.service;
 
 import com.example.projeto_mariana.model.Nf;
 import com.example.projeto_mariana.repository.NfRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class NfBusinessImpl implements NfBusiness{
+public class NfServiceImpl implements NfService {
 
     @Autowired
     private NfRepository nfRepository;
@@ -39,8 +39,7 @@ public class NfBusinessImpl implements NfBusiness{
         nf.setNumber(nfInfo.getNumber());
         nf.setDocument(nfInfo.getDocument());
         nf.setDocumentTypeId(nfInfo.getDocumentTypeId());
-        final Nf updatedNf = nfRepository.save(nf);
-        return updatedNf;
+        return nfRepository.save(nf);
     }
 
     public List<Nf> list(){
