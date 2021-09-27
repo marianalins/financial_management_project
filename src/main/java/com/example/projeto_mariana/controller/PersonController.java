@@ -41,13 +41,13 @@ public class PersonController {
     @PostMapping("/add")
     public ResponseEntity<String> addPerson(@RequestBody Person person) {
         log.info("Receiving HTTP request ");
-        Optional<Person> optional = Optional.ofNullable(personBusiness.findPerson(person));
+        Optional<Person> optional = personBusiness.getRepository().findByFirstLast(person.getFirstName(),person.getLastName());
 
        if(!optional.isPresent()) {
             personBusiness.addPerson(person);
             return new ResponseEntity<>("Person added successfully!", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Person already exist in the system", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(person.getFirstName() +" " + person.getLastName() +" already exist in the system", HttpStatus.NOT_FOUND);
         }
     }
 

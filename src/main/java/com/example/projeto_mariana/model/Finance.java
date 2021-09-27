@@ -31,6 +31,10 @@ public class Finance {
     @Column(name="nf_id", nullable = false)
     private Long nfId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
+    private Person person;
+
     public Finance(Long id, String type, Long personId, Long nfId) {
         this.id = id;
         this.type = type;
