@@ -17,7 +17,7 @@ import java.util.Optional;
 public class PersonController {
 
     @Autowired
-    private PersonService personBusiness;
+    private PersonService personService;
 
     @GetMapping("/getsemparam")
     public ResponseEntity<Person> getPersonsem() {
@@ -30,7 +30,7 @@ public class PersonController {
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getPerson(@PathVariable Long id) {
         log.info("Receiving HTTP request ");
-        Optional<Person> person = Optional.ofNullable(personBusiness.getPerson(id));
+        Optional<Person> person = Optional.ofNullable(personService.getPerson(id));
         if(person.isPresent()) {
             return new ResponseEntity<Person>(person.get(),HttpStatus.OK);
         } else {
@@ -41,10 +41,10 @@ public class PersonController {
     @PostMapping("/add")
     public ResponseEntity<String> addPerson(@RequestBody Person person) {
         log.info("Receiving HTTP request ");
-        Optional<Person> optional = personBusiness.getRepository().findByFirstLast(person.getFirstName(),person.getLastName());
+        Optional<Person> optional = personService.getPerson(person.getId()). getRepository().findByFirstLast(person.getFirstName(),person.getLastName());
 
        if(!optional.isPresent()) {
-            personBusiness.addPerson(person);
+            personService.addPerson(person);
             return new ResponseEntity<>("Person added successfully!", HttpStatus.OK);
         } else {
             return new ResponseEntity<>(person.getFirstName() +" " + person.getLastName() +" already exist in the system", HttpStatus.NOT_FOUND);
@@ -54,9 +54,9 @@ public class PersonController {
     @DeleteMapping(path = {"/delete/{id}"})
     public ResponseEntity<String> delete(@PathVariable Long id) {
         log.info("Receiving HTTP request ");
-        Optional<Person> person = Optional.ofNullable(personBusiness.getPerson(id));
+        Optional<Person> person = Optional.ofNullable(personService.getPerson(id));
         if(person.isPresent()) {
-            personBusiness.delete(id);
+            personService.delete(id);
             return new ResponseEntity<>("Person deleted successfully!", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Person does not exist in the system", HttpStatus.NOT_FOUND);
@@ -68,7 +68,7 @@ public class PersonController {
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable(value="id") Long id, Person personInfo) {
         log.info("Receiving HTTP request ");
-        return new ResponseEntity<>("Updated successfully "+ personBusiness.update(id,personInfo),HttpStatus.OK);
+        return new ResponseEntity<>("Updated successfully "+ personService.update(id,personInfo),HttpStatus.OK);
 
     }
 
@@ -76,7 +76,7 @@ public class PersonController {
     public ResponseEntity<List<Person>> list() {
         log.info("Receiving HTTP request ");
 
-        return ResponseEntity.ok(personBusiness.list());
+        return ResponseEntity.ok(personService.list());
 
     }
 

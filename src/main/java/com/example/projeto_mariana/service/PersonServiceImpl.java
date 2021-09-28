@@ -16,9 +16,6 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-    public PersonRepository getRepository() {
-        return personRepository;
-    }
 
     public Person getPerson(Long id){
         return personRepository.findById(id).orElse(null);

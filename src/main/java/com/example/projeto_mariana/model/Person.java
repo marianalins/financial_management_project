@@ -28,6 +28,7 @@ public class Person {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
     private List<Finance> finances;
 
+
     public Person(Long id, String firstName) {
         this.id = id;
         this.firstName = firstName;

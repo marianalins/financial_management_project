@@ -32,7 +32,7 @@ public class Finance {
     private Long nfId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "person_id",insertable=false, updatable=false)
     private Person person;
 
     public Finance(Long id, String type, Long personId, Long nfId) {

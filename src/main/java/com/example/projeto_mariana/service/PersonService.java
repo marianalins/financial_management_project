@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface PersonService {
 
-    public PersonRepository getRepository();
     public Person getPerson(Long id);
     public Person findPerson(Person person);
     public void addPerson(Person person);

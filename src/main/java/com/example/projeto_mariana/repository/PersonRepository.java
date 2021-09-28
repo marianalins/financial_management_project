@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query("select p from Person p where p.firstName = ?1 and p.lastName = ?2")
-    Optional<Person> findByFirstLast(String firstName, String lastName );
+    Optional<Person> findByFullName(String firstName, String lastName );
 }
