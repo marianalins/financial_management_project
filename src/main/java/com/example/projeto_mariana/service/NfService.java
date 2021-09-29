@@ -3,14 +3,16 @@ package com.example.projeto_mariana.service;
 import com.example.projeto_mariana.model.Nf;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface NfService {
-    public Nf getNf(Long id);
-    public Nf findNf(Nf nf);
-    public void addNf(Nf nf);
-    public void delete(Long id);
-    public Nf update(Long id, Nf nfInfo);
-    public List<Nf> list();
+    Nf getNf(Long id);
+    Optional<Nf> findNf(Nf nf);
+    void addNf(Nf nf);
+    void delete(Long id);
+    Nf update(Long id, Nf nfInfo);
+    List<Nf> list();
 }

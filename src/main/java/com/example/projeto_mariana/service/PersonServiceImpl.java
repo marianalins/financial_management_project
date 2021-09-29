@@ -21,15 +21,9 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.findById(id).orElse(null);
     }
 
-    public Person findPerson(Person person){
-        List<Person> listPerson = list();
-        for(int i = 0; i <= listPerson.size() - 1 ;i++) {
-            if(listPerson.get(i).getFirstName().equals(person.getFirstName()) &&
-                    listPerson.get(i).getLastName().equals(person.getLastName())) {
-                return person;
-            }
-        }
-        return null;
+
+    public Optional<Person> getPersonByFullName(Person person) {
+        return personRepository.findByFullName(person.getFirstName(),person.getLastName());
     }
 
     public void addPerson(Person person){

@@ -1,11 +1,13 @@
 package com.example.projeto_mariana.service;
 
 import com.example.projeto_mariana.model.Nf;
+import com.example.projeto_mariana.model.Person;
 import com.example.projeto_mariana.repository.NfRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class NfServiceImpl implements NfService {
@@ -17,14 +19,8 @@ public class NfServiceImpl implements NfService {
         return nfRepository.findById(id).orElse(null);
     }
 
-    public Nf findNf(Nf nf){
-        List<Nf> nfList = list();
-        for(int i = 0; i <= nfList.size(); i++) {
-            if(nfList.get(i).getNumber().equals(nf.getNumber())) {
-                return nf;
-            }
-        }
-        return null;
+    public Optional<Nf> findNf(Nf nf){
+        return nfRepository.findByNumber(nf.getNumber());
     }
 
     public void addNf(Nf nf){

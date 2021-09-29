@@ -41,7 +41,7 @@ public class PersonController {
     @PostMapping("/add")
     public ResponseEntity<String> addPerson(@RequestBody Person person) {
         log.info("Receiving HTTP request ");
-        Optional<Person> optional = personService.getPerson(person.getId()). getRepository().findByFirstLast(person.getFirstName(),person.getLastName());
+        Optional<Person> optional = personService. getPersonByFullName(person);
 
        if(!optional.isPresent()) {
             personService.addPerson(person);

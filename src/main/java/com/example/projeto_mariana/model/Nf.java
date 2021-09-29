@@ -16,7 +16,7 @@ public class Nf {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int id;
+    public Long id;
     @Column(name = "document")
     public String document;
     @Column(name = "number", nullable = false)
@@ -24,7 +24,7 @@ public class Nf {
     @Column(name = "document_type_id")
     public int documentTypeId;
 
-    public Nf(int id, String number) {
+    public Nf(Long id, String number) {
         this.id = id;
         this.number = number;
     }

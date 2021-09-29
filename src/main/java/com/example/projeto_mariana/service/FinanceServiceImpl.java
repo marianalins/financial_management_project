@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class FinanceServiceImpl implements FinanceService {
@@ -17,16 +18,8 @@ public class FinanceServiceImpl implements FinanceService {
         return financeRepository.findById(id).orElse(null);
     }
 
-    public Finance findFinance(Finance finance) {
-        List<Finance> financeList = list();
-        for(int i = 0; i <= financeList.size(); i++) {
-            if(financeList.get(i).getPersonId() == finance.getPersonId() &&
-                financeList.get(i).getType().equals(finance.getType()) &&
-                financeList.get(i).getNfId() == finance.getNfId()) {
-               return finance;
-            }
-        }
-        return null;
+    public Optional<Finance> findFinance(Finance finance){
+        return financeRepository.findByData(finance.getPersonId(),finance.getType(),finance.getNfId());
     }
 
     public void addFinance(Finance finance) {

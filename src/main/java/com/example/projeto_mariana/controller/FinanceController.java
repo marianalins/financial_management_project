@@ -30,9 +30,10 @@ public class FinanceController {
         }
     }
 
+    @PostMapping("/add")
     public ResponseEntity<String> addFinance(@RequestBody Finance finance) {
         log.info("Receiving HTTP request ");
-        Optional<Finance> optional = Optional.ofNullable(financeBusiness.findFinance(finance));
+        Optional<Finance> optional = financeBusiness.findFinance(finance);
         if(!optional.isPresent()) {
             financeBusiness.addFinance(finance);
             return new ResponseEntity<>("Finance added successfully!", HttpStatus.OK);
