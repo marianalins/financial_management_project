@@ -34,7 +34,7 @@ public class DocumentTypeController {
     @PostMapping("/add")
     public ResponseEntity<String> addDocumentType(@RequestBody DocumentType documentType){
         log.info("Receiving HTTP request ");
-        Optional<DocumentType> optional = Optional.ofNullable(documentTypeService.findDocumentType(documentType));
+        Optional<DocumentType> optional = documentTypeService.findDocumentType(documentType);
 
         if(!optional.isPresent()) {
             documentTypeService.addDocumentType(documentType);

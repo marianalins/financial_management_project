@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DocumentTypeServiceImpl {
 
@@ -16,15 +17,8 @@ public class DocumentTypeServiceImpl {
         return documentTypeRepository.findById(id).orElse(null);
     }
 
-    public DocumentType findDocumentType(DocumentType documentType){
-        List<DocumentType> listDocumentType = list();
-        for(int i = 0; i <= listDocumentType.size() - 1 ;i++) {
-            if(listDocumentType.get(i).getDescription().equals(documentType.getDescription()) &&
-                    listDocumentType.get(i).getExtension().equals(documentType.getExtension())) {
-                return documentType;
-            }
-        }
-        return null;
+    public Optional<DocumentType> findDocumentType(DocumentType documentType){
+        return documentTypeRepository.findDocumentType(documentType.getId(),documentType.getDescription(),documentType.getExtension());
     }
 
     public ResponseEntity<DocumentType> update(Long id, DocumentType documentTypeInfo) {
