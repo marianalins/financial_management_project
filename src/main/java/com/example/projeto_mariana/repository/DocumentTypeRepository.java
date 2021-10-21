@@ -8,6 +8,6 @@ import javax.swing.text.Document;
 import java.util.Optional;
 
 public interface DocumentTypeRepository extends JpaRepository<DocumentType, Long> {
-    @Query("select dt from DocumentType dt where dt.id = ?1 and dt.description = ?2 and dt.extension")
+    @Query("select dt from DocumentType dt where dt.id = ?1 and dt.description = ?2 and dt.extension =?3")
     Optional<DocumentType> findDocumentType(Long id, String description, String extension);
 }
