@@ -20,6 +20,7 @@ CREATE TABLE nf(
 
 CREATE TABLE finance (
 		id int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		value int UNSIGNED NOT NULL,
 		type varchar(100) NOT NULL,
 		description varchar(20),
 		person_id int UNSIGNED NOT NULL,

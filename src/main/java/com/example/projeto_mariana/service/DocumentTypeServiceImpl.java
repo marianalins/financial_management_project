@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
-public class DocumentTypeServiceImpl {
+public class DocumentTypeServiceImpl implements DocumentTypeService{
 
     @Autowired
     private DocumentTypeRepository documentTypeRepository;
@@ -21,6 +21,14 @@ public class DocumentTypeServiceImpl {
         return documentTypeRepository.findDocumentType(documentType.getId(),documentType.getDescription(),documentType.getExtension());
     }
 
+    public void addDocumentType(DocumentType documentType){
+        documentTypeRepository.save(documentType);
+    }
+
+    public void delete(Long id) {
+        documentTypeRepository.deleteById(id);
+    }
+
     public ResponseEntity<DocumentType> update(Long id, DocumentType documentTypeInfo) {
         DocumentType documentType =  documentTypeRepository.findById(id).orElse(null);
         documentType.setDescription(documentTypeInfo.getDescription());
@@ -28,9 +36,7 @@ public class DocumentTypeServiceImpl {
         return ResponseEntity.ok(documentTypeRepository.save(documentType));
     }
 
-    public void addDocumentType(DocumentType documentType){
-        documentTypeRepository.save(documentType);
-    }
+
 
     public List<DocumentType> list(){
         return documentTypeRepository.findAll();

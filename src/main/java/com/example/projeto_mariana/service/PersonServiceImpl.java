@@ -30,7 +30,7 @@ public class PersonServiceImpl implements PersonService {
         personRepository.save(person);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         personRepository.deleteById(id);
     }
 

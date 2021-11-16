@@ -18,21 +18,23 @@ public class Finance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name="type", nullable = false)
+    @Column(name = "value", nullable = false)
+    private int value;
+    @Column(name = "type", nullable = false)
     private String type;
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
-    @Column(name="person_id", nullable = false)
+    @Column(name = "person_id", nullable = false)
     private Long personId;
-    @Column(name="date")
+    @Column(name = "date")
     private Date date;
-    @Column(name="due_date")
+    @Column(name = "due_date")
     private Date dueDate;
-    @Column(name="nf_id")
+    @Column(name = "nf_id")
     private Long nfId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id",insertable=false, updatable=false)
+    @JoinColumn(name = "person_id",insertable = false, updatable = false)
     private Person person;
 
     public Finance(Long id, String type, Long personId, Long nfId) {
