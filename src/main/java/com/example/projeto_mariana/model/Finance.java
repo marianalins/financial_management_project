@@ -28,7 +28,7 @@ public class Finance {
     private Date date;
     @Column(name="due_date")
     private Date dueDate;
-    @Column(name="nf_id", nullable = false)
+    @Column(name="nf_id")
     private Long nfId;
 
     @ManyToOne(fetch = FetchType.LAZY)

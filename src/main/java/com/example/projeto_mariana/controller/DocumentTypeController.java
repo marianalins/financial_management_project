@@ -4,12 +4,10 @@ import com.example.projeto_mariana.model.DocumentType;
 import com.example.projeto_mariana.model.Person;
 import com.example.projeto_mariana.service.DocumentTypeService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
 import java.util.List;
 import java.util.Optional;
 

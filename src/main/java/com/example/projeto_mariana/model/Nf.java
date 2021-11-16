@@ -21,8 +21,8 @@ public class Nf {
     public String document;
     @Column(name = "number", nullable = false)
     public String number;
-    @Column(name = "document_type_id")
-    public int documentTypeId;
+    @Column(name = "document_type_id", nullable = false)
+    public Long documentTypeId;
 
     public Nf(Long id, String number) {
         this.id = id;
